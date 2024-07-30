@@ -1,3 +1,5 @@
+// Creating the server api
+import reactRefresh from "@vitejs/plugin-react";
 import { createApp } from "vinxi";
 
 export default createApp({
@@ -8,6 +10,14 @@ export default createApp({
             type: "static",
             base: "/photos",
             dir: "./photos",
+        },
+        {
+            name: "client",
+            type: "spa",
+            handler: "./index.html",
+            target: "browser",
+            // to enable HMR
+            plugins: () => [reactRefresh()],
         },
         {
             // Instructing that any HTTP request to /api should be handled here, by calling /index.ts
